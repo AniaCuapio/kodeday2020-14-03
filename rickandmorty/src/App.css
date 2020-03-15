@@ -68,11 +68,11 @@ overflow: hidden;
   cursor: pointer;
 }
 
-.Card-imagen figure img {
+.Card-image figure img {
   border-radius: 10px;
 }
 
-.Card-imagen figure img:hover {
+.Card-image figure img:hover {
   filter: invert(100%);
 }
 

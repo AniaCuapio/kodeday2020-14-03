@@ -11,7 +11,7 @@ class App extends React.Component {
       this.state = {
         modalActivo: false,
         personajes:[],
-        idPersonajeSeleccionado: []
+        personajeSeleccionado: []
       }
     }
   componentDidMount(){
@@ -29,7 +29,7 @@ class App extends React.Component {
       .then(personaje=> {
         this.setState({
           modalActivo: true,
-          idPersonajeSeleccionado: personaje
+          personajeSeleccionado: personaje
         })
       })
     }
@@ -43,11 +43,10 @@ class App extends React.Component {
 
 
   renderCards(p) {
-    console.log(p,'holaaaa')
     return (
 
       <div key={p.id} className='Card' onClick={e => this.activarModal(p.id)}>
-        <div className='Card-imagen'>
+        <div className='Card-image'>
           <figure>
             <img alt='test' src={p.image} />
           </figure>
@@ -77,28 +76,27 @@ class App extends React.Component {
           { modalActivo ? (
             <div className='modal' onClick={e => this.desactivarModal()}>
               <div className='Card-detalle'>
-                <div className='Card-imagen'>
+                <div className='Card-image'>
                   <figure>
                     <img alt='test' src={this.state.personajeSeleccionado.image} />
                   </figure>
                 </div>
                 <div className='Card-detalle-descripcion'>
                   <div className='descripcion'>
-                  <h3></h3>
+                  <h3> {this.state.personajeSeleccionado.name}</h3>
                     <div className='caracteristica'>
                       <p>Status</p>
                       <p className='caracteristica-valor'>
-                    
+                      {this.state.personajeSeleccionado.status}
                       </p>
                     </div>
                     <div className='caracteristica'>
                       <p>Especie</p>
                       <p className='caracteristica-valor'>
-                        {this.state.personajeSeleccionado.name}
-                      </p>
+                        {this.state.personajeSeleccionado.species}</p>
                     </div>
                     <div className='caracteristica'>
-                      <p>Genero</p>
+                      <p>Género</p>
                       <p className='caracteristica-valor'>
                       {this.state.personajeSeleccionado.gender}
                       </p>
@@ -106,7 +104,13 @@ class App extends React.Component {
                     <div className='caracteristica'>
                       <p>Origen</p>
                       <p className='caracteristica-valor'>
-                      {this.state.personajeSeleccionado.origin}
+                      {this.state.personajeSeleccionado.origin.name}
+                      </p>
+                    </div>
+                    <div className='caracteristica'>
+                      <p>Last location</p>
+                      <p className='caracteristica-valor'>
+                      {this.state.personajeSeleccionado.location.name}
                       </p>
                     </div>
                   </div>
